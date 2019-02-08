@@ -1,7 +1,14 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-import { GET_SMURFS_START, GET_SMURFS_SUCCESS, GET_SMURFS_FAIL } from '../actions'
+import {
+  GET_SMURFS_START,
+  GET_SMURFS_SUCCESS,
+  GET_SMURFS_FAIL,
+  POST_SMURFS_START,
+  POST_SMURFS_SUCCESS,
+  POST_SMURFS_FAIL
+} from '../actions'
 
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -10,6 +17,7 @@ const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
   postingSmurfs: false,
+  postSmurf: false,
   addingSmurf: false,
   updatingSmurf: false,
   deletingSmurf: false,
@@ -44,6 +52,25 @@ const reducer = (state = initialState, action) => {
         postingSmurfs: false,
         error: action.payload
       };
+    case POST_SMURFS_START:
+      return {
+        ...state,
+        postingSmurfs: true
+      }
+    case POST_SMURFS_SUCCESS:
+      return {
+        ...state,
+        postingSmurfs: false,
+        postSmurf: true,
+        smurfs: action.payload
+      }
+    case POST_SMURFS_FAIL:
+      return {
+        ...state,
+        postingSmurfs: false,
+        postSmurf: false,
+        error: action.paylod
+      }
     default:
       return state;
   }

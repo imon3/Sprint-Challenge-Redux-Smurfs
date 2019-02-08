@@ -14,15 +14,16 @@ class Smurfs extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.props.getSmurfs();
+    componentDidMount(smurfs) {
+        this.props.getSmurfs()
+
     }
 
     render() {
 
         return (
             <div className='smurfs'>
-                {/* {this.state.smurfs.map((smurf, index) => {
+                {this.state.smurfs.map((smurf, index) => {
                     return (
                         <div key={index}>
                             <div>{smurf.name}</div>
@@ -30,7 +31,7 @@ class Smurfs extends React.Component {
                             <div>{smurf.height}</div>
                         </div>
                     )
-                })} */}
+                })}
                 <SmurfsForm />
             </div>
         )
@@ -38,10 +39,11 @@ class Smurfs extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.smurfs);
+    console.log(state)
     return {
         fetchingSmurfs: state.fetchingSmurfs,
         postingSmurfs: state.postingSmurfs,
+        error: state.error,
         smurfs: state.smurfs
     }
 }
