@@ -5,7 +5,7 @@ import axios from 'axios';
   Be sure to export each action type so you can pull it into your reducer
 */
 export const GET_SMURFS_START = 'GET_SMURFS_START';
-export const GET_SMURFS_SUCCESS = 'GET_SMURF_SUCCESS';
+export const GET_SMURFS_SUCCESS = 'GET_SMURFS_SUCCESS';
 export const GET_SMURFS_FAIL = 'GET_SMURFS_FAIL';
 
 export const POST_SMURFS_START = 'POST_SMURFS_START'
@@ -41,9 +41,9 @@ export const getSmurfs = () => dispatch => {
     })
 }
 
-export const postSmurfs = smurf => dispatch => {
+export const postSmurf = smurf => dispatch => {
   dispatch({ type: POST_SMURFS_START });
-  axios.POST('http://localhost:3333/smurfs', smurf)
+  axios.post('http://localhost:3333/smurfs', smurf)
     .then(res => {
       dispatch({
         type: POST_SMURFS_SUCCESS,

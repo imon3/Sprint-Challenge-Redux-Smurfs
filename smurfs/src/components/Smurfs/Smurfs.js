@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { getSmurfs } from '../../actions';
 
@@ -16,6 +17,13 @@ class Smurfs extends React.Component {
 
     componentDidMount(smurfs) {
         this.props.getSmurfs()
+        axios.get('http://localhost:3333/smurfs')
+            .then(res => {
+                this.setState({
+                    smurfs: res.data
+                })
+            })
+            .catch(err => console.log(err))
 
     }
 
