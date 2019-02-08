@@ -32,6 +32,10 @@ class Smurfs extends React.Component {
 
         return (
             <div className='smurfs'>
+                <h1>SMURFS! 2.0 W/ Redux</h1>
+                <div>Welcome to your Redux version of Smurfs!</div>
+                <div>Start inside of your `src/index.js` file!</div>
+                <div>Have fun!</div>
                 {this.state.smurfs.map((smurf, index) => {
                     return (
                         <Smurf key={index} id={index} smurf={smurf} />
