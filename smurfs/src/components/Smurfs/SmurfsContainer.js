@@ -5,6 +5,7 @@ import axios from 'axios';
 import { getSmurfs } from '../../actions';
 
 import SmurfsForm from './SmurfsForm';
+import Smurf from './Smurf';
 
 class Smurfs extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Smurfs extends React.Component {
         }
     }
 
-    componentDidMount(smurfs) {
+    componentDidMount() {
         this.props.getSmurfs()
         axios.get('http://localhost:3333/smurfs')
             .then(res => {
@@ -33,11 +34,7 @@ class Smurfs extends React.Component {
             <div className='smurfs'>
                 {this.state.smurfs.map((smurf, index) => {
                     return (
-                        <div key={index}>
-                            <div>{smurf.name}</div>
-                            <div>{smurf.age}</div>
-                            <div>{smurf.height}</div>
-                        </div>
+                        <Smurf key={index} id={index} smurf={smurf} />
                     )
                 })}
                 <SmurfsForm />
@@ -47,7 +44,7 @@ class Smurfs extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+
     return {
         fetchingSmurfs: state.fetchingSmurfs,
         postingSmurfs: state.postingSmurfs,
