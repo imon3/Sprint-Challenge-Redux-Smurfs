@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Axios from 'axios';
 /* 
   Action Types Go Here!
   Be sure to export each action type so you can pull it into your reducer
@@ -6,6 +7,10 @@ import axios from 'axios';
 export const GET_SMURFS_START = 'GET_SMURFS';
 export const GET_SMURFS_SUCCESS = 'GET_SMURFS';
 export const GET_SMURFS_FAIL = 'GET_SMURFS';
+
+export const POST_SMURFS_START = 'POST_SMURFS_START'
+export const POST_SMURFS_SUCCESS = 'POST_SMURFS_SUCCESS'
+export const POST_SMURFS_FAIL = 'POST_SMURFS_FAIL'
 
 
 /*
@@ -21,13 +26,36 @@ export const GET_SMURFS_FAIL = 'GET_SMURFS';
 
 export const getSmurfs = () => dispatch => {
   dispatch({ type: GET_SMURFS_START });
-  axios.get('http:localhost:3333/smurfs')
-    .then(res => dispatch({
-      type: GET_SMURFS_SUCCESS,
-      payload: res.data
-    }))
-    .catch(err => dispatch({
-      type: GET_SMURFS_FAIL,
-      payload: err
-    }))
+  axios.get('http://localhost:3333/smurfs')
+    .then(res => {
+      dispatch({
+        type: GET_SMURFS_SUCCESS,
+        payload: res.data
+      })
+    })
+
+    .catch(err => {
+      dispatch({
+        type: GET_SMURFS_FAIL,
+        payload: err
+      })
+    })
 }
+
+export const postSmurfs = smurf => dispatch => {
+  dispatch({ type: POST_SMURFS_START });
+  Axios.POST('http://localhost:3333/smurfs', smurf)
+    .then(res => {
+      dispatch({
+        type: POST_SMURFS_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: POST_SMURFS_FAIL,
+        payload: err
+      })
+    })
+}
+

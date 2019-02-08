@@ -30,20 +30,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: true
-      }
+      };
     case GET_SMURFS_SUCCESS:
       return {
         ...state,
         fetchingSmurfs: false,
-        postingSmurfs: true,
         smurfs: action.payload
-      }
+      };
     case GET_SMURFS_FAIL:
       return {
         ...state,
         fetchingSmurfs: false,
+        postingSmurfs: false,
         error: action.payload
-      }
+      };
     default:
       return state;
   }
